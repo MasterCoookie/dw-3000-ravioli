@@ -171,12 +171,12 @@ void loop() {
         /*
          * Need to check the STS has been received and is good.
          */
-        goodSts = dwt_readstsquality(&stsQual);
+        // goodSts = dwt_readstsquality(&stsQual);
 
         /*
          * Check for a good frame with good STS count.
          */
-        if ((status_reg & SYS_STATUS_RXFCG_BIT_MASK) && (goodSts >= 0))
+        if ((status_reg & SYS_STATUS_RXFCG_BIT_MASK) /*&& (goodSts >= 0)*/)
         {
             uint32_t frame_len;
 
@@ -250,14 +250,14 @@ void loop() {
             {
                 errors[BAD_FRAME_ERR_IDX] += 1;
             }
-            if (goodSts < 0)
-            {
-                errors[PREAMBLE_COUNT_ERR_IDX] += 1;
-            }
-            if (stsQual <= 0)
-            {
-                errors[CP_QUAL_ERR_IDX] += 1;
-            }
+            // if (goodSts < 0)
+            // {
+            //     errors[PREAMBLE_COUNT_ERR_IDX] += 1;
+            // }
+            // if (stsQual <= 0)
+            // {
+            //     errors[CP_QUAL_ERR_IDX] += 1;
+            // }
             /* Clear RX error events in the DW IC status register. */
             dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
         }
