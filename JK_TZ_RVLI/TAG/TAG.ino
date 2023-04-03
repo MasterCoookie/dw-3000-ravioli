@@ -61,10 +61,10 @@ extern dwt_txconfig_t txconfig_options_ch9;
  *
  * Here we use a default KEY as specified in the IEEE 802.15.4z annex
  */
-static dwt_sts_cp_key_t cp_key =
-{
-        0x14EB220F,0xF86050A8,0xD1D336AA,0x14148674
-};
+// static dwt_sts_cp_key_t cp_key =
+// {
+//         0x14EB220F,0xF86050A8,0xD1D336AA,0x14148674
+// };
 
 /*
  * 128-bit initial value for the nonce to be programmed into the CP_IV register.
@@ -76,10 +76,10 @@ static dwt_sts_cp_key_t cp_key =
  *
  * Here we use a default IV as specified in the IEEE 802.15.4z annex
  */
-static dwt_sts_cp_iv_t cp_iv =
-{
-        0x1F9A3DE4,0xD37EC3CA,0xC44FA8FB,0x362EEB34
-};
+// static dwt_sts_cp_iv_t cp_iv =
+// {
+//         0x1F9A3DE4,0xD37EC3CA,0xC44FA8FB,0x362EEB34
+// };
 
 /*
  * The 'poll' message initiating the ranging exchange includes a 32-bit counter which is part
@@ -171,24 +171,24 @@ void loop() {
          * Set STS encryption key and IV (nonce).
          * See NOTE 16 below.
          */
-        if (!firstLoopFlag)
-        {
-            /*
-             * On first loop, configure the STS key & IV, then load them.
-             */
-            dwt_configurestskey(&cp_key);
-            dwt_configurestsiv(&cp_iv);
-            dwt_configurestsloadiv();
-            firstLoopFlag = 1;
-        }
-        else
-        {
-            /*
-             * On subsequent loops, we only need to reload the lower 32 bits of STS IV.
-             */
-            dwt_writetodevice(STS_IV0_ID, 0, 4, (uint8_t *)&cp_iv);
-            dwt_configurestsloadiv();
-        }
+        // if (!firstLoopFlag)
+        // {
+        //     /*
+        //      * On first loop, configure the STS key & IV, then load them.
+        //      */
+        //     dwt_configurestskey(&cp_key);
+        //     dwt_configurestsiv(&cp_iv);
+        //     dwt_configurestsloadiv();
+        //     firstLoopFlag = 1;
+        // }
+        // else
+        // {
+        //     /*
+        //      * On subsequent loops, we only need to reload the lower 32 bits of STS IV.
+        //      */
+        //     dwt_writetodevice(STS_IV0_ID, 0, 4, (uint8_t *)&cp_iv);
+        //     dwt_configurestsloadiv();
+        // }
         /*
          * Send the poll message to the responder.
          */
