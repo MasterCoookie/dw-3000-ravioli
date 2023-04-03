@@ -1,6 +1,6 @@
 #include "dw3000.h"
 
-#define APP_NAME "SS TWR INIT STS v1.0"
+#define APP_NAME "RVLI TAG 1.0"
 
 // connection pins
 const uint8_t PIN_RST = 27; // reset pin
