@@ -210,7 +210,7 @@ void loop() {
         /*
          * Need to check the STS has been received and is good.
          */
-        // goodSts = dwt_readstsquality(&stsQual);
+        goodSts = dwt_readstsquality(&stsQual);
 
         /* Increment frame sequence number after transmission of the poll message (modulo 256). */
         frame_seq_nb++;
@@ -218,7 +218,7 @@ void loop() {
         /*
          * Here we are checking for a good frame and good STS quality.
          */
-        if ((status_reg & SYS_STATUS_RXFCG_BIT_MASK) /*&& (goodSts >= 0)*/)
+        if ((status_reg & SYS_STATUS_RXFCG_BIT_MASK) && (goodSts >= 0))
         {
             uint32_t frame_len;
 
@@ -280,14 +280,14 @@ void loop() {
             {
                 errors[BAD_FRAME_ERR_IDX] += 1;
             }
-            // if (goodSts < 0)
-            // {
-            //     errors[PREAMBLE_COUNT_ERR_IDX] += 1;
-            // }
-            // if (stsQual <= 0)
-            // {
-            //     errors[CP_QUAL_ERR_IDX] += 1;
-            // }
+            if (goodSts < 0)
+            {
+                errors[PREAMBLE_COUNT_ERR_IDX] += 1;
+            }
+            if (stsQual <= 0)
+            {
+                errors[CP_QUAL_ERR_IDX] += 1;
+            }
         }
 
         /* Clear RX error/timeout events in the DW IC status register. */
